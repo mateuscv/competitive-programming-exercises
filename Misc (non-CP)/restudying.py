@@ -78,3 +78,22 @@ print(mo.group())
 myRegexString = re.compile(r'((\d\d\d-)?\d\d\d-\d\d\d\d(, )?){3,5}') # leave 2nd number blank for infinity as max
 mo = myRegexString.search("My numbers are 451-431-5304, 657-8975, 123-456-7890, 456-897-5656.")
 print(mo.group())
+
+# Shorthand character classes:
+# \d -- digits, \w -- letters, digits or underscores, \s -- spaces, tabs, newlines
+# every one of those has a capital letter counterpart (e.g. \D) that denotes its opposite.
+print()
+
+lyrics = "12 drummers drumming, 11 pipers piping, 10 lords a leaping, 9 ladies dancing, 8 maids a milking, 7 swans a swimming, 6 geese a laying, 5 golden rings, 4 calling birds, 3 french hens, 2 turtle doves, and 1 partridge in a pear tree"
+lyrRegex = re.compile('\d+\s\w+')
+lyrList = lyrRegex.findall(lyrics)
+print(lyrList)
+
+# Custom character classes:
+print()
+
+vowelRegex = re.compile(r'[aeiouAEIOU]') # r'(a|e|i|o|u|A|E|I|O|U)'
+print(vowelRegex.findall('Oloco bixo! Quem sabe faz ao vivo!'))
+
+vowelRegex = re.compile(r'[aeiouAEIOU]{2}')
+print(vowelRegex.findall('Oloco bixo! Quem sabe faz ao vivo!'))
