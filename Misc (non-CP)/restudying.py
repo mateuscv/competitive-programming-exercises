@@ -97,3 +97,7 @@ print(vowelRegex.findall('Oloco bixo! Quem sabe faz ao vivo!'))
 
 vowelRegex = re.compile(r'[aeiouAEIOU]{2}')
 print(vowelRegex.findall('Oloco bixo! Quem sabe faz ao vivo!'))
+
+# Negative:
+nonVowelRegex = re.compile(r'[^aeiouAEIOU]')
+print(nonVowelRegex.findall('Oloco bixo! Quem sabe faz ao vivo!'))
