@@ -93,6 +93,10 @@ print(lyrList)
 print()
 
 vowelRegex = re.compile(r'[aeiouAEIOU]') # r'(a|e|i|o|u|A|E|I|O|U)'
+
+# OR
+
+vowelRegex = re.compile(r'[aeiou]', re.I) # re.I --> IGNORECASE
 print(vowelRegex.findall('Oloco bixo! Quem sabe faz ao vivo!'))
 
 vowelRegex = re.compile(r'[aeiouAEIOU]{2}')
@@ -101,3 +105,52 @@ print(vowelRegex.findall('Oloco bixo! Quem sabe faz ao vivo!'))
 # Negative:
 nonVowelRegex = re.compile(r'[^aeiouAEIOU]')
 print(nonVowelRegex.findall('Oloco bixo! Quem sabe faz ao vivo!'))
+
+# ^ on non-custom -- only matches strings which begin with regex pattern.
+beginsWithHelloRegex = re.compile(r'^Hello')
+print(beginsWithHelloRegex.search('Hello there!'))
+print(beginsWithHelloRegex.search('He said hello there!'))
+
+# $ at the end -- only matches strings which end with the regex pattern.
+endsWithWorldRegex = re.compile(r'world!$')
+print(endsWithWorldRegex.search("Hello world!"))
+print(endsWithWorldRegex.search("Hello world!assd"))
+
+print()
+
+# using both -- the entire string must match the pattern
+
+allDigitsRegex = re.compile(r'^\d+$')
+print(allDigitsRegex.search('45542155546'))
+print(allDigitsRegex.search('4554a2155546'))
+
+# The dot -- any single character except newline
+print()
+
+atRegex = re.compile(r'.at')
+print(atRegex.findall('The cat in the hat sat on the flat mat'))
+
+atRegex = re.compile(r'.{1,2}at')
+print(atRegex.findall('The cat in the hat sat on the flat mat')) #notice the spaces in output
+
+# Dot-star:
+print()
+
+nameRegex = re.compile(r'First Name: (.*) Last Name: (.*)')
+print(nameRegex.findall("First Name: Al Last Name: Sweigart"))
+
+# greedily and non:
+serve = '<To serve humans> for dinner.>'
+greedy = re.compile(r'<(.*)>')
+print(greedy.findall(serve))
+
+nongreedy = re.compile(r'<(.*?)>')
+print(nongreedy.findall(serve))
+
+# With newline:
+print()
+
+prime = 'Serve.\nProtect.\nUpload.'
+dotStar = re.compile(r'.*', re.DOTALL)
+mo = dotStar.search(prime)
+print(mo.group())
